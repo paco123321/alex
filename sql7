@@ -1,0 +1,19 @@
+SELECT nombre
+FROM Productos
+WHERE PrecioVenta IN (SELECT MAX (PrecioVenta
+                                 FROM Productos))
+
+
+SELECT CodigoProducto, CantidadStock
+FROM Productos
+WHERE CantidadStock IN (SELECT MAX(CantidadStock)
+			FROM Productos) OR
+			CantidadStock IN
+			(SELECT MIN(CantidadStock)
+			FROM Productos)
+
+SELECT NombreCliente
+FROM CLIENTE
+WHERE CodigoCliente IN (SELECT CodigoCliente
+			FROM Pedidos
+			WHERE YEAR(FechaPedido)="2008")
